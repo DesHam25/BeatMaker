@@ -1,0 +1,374 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,300;1,400;1,500;1,600;1,700;1,900&family=Roboto+Slab:wght@300;400;500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+/* CSS Rest */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'poppins', sans-serif;
+  scroll-behavior: smooth;
+}
+
+html {
+  color-scheme: dark light;
+  font-size: 62.5%;
+  /* This defines what 1rem is */
+  /* the default font-size of the browser 16 pixels. What we want is to set it to 10 pixels using percent  10 divided by 16 is 0.625 which is turn into a percent of 62.5%. .625 * 16 = 62.5 10 pixels */
+}
+body {
+  box-sizing: border-box;
+  color: var(--text-100);
+  font-size: 2rem;
+  font-weight: 400;
+  position: relative;
+  line-height: 1.7;
+  /* body font-size now 10px due to the change to html 62.5% */
+  min-height: 100vh;
+  min-width: 100vw;
+  background: var(--bgv-100);
+}
+
+body::-webkit-scrollbar {
+  width: 1.3rem; /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background-color: var(--bgv-100); /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--bgv-100); /* color of the scroll thumb */
+  border-radius: 0.3rem; /* roundness of the scroll thumb */
+}
+body::-webkit-scrollbar-thumb:hover {
+  background-color: var(
+    --primary-100
+  ); /* creates bg-color change scroll thumb */
+}
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+svg,i{
+  pointer-events: none;
+}
+input,
+textarea,
+button,
+select {
+  font: inherit;
+}
+
+li {
+  list-style: none;
+}
+a {
+  color: inherit;
+  display: inline-block;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+/* CSS Rest */
+
+/* Global Variables */
+:root {
+  --primary-100: rgb(0, 167, 142);
+
+  --text-100: #94a3b8;
+  --text-200: #cbd5e1;
+
+  --primary-color: rgb(222, 228, 231);
+
+  --bg-100: #1e293b;
+  --bgv-100: rgba(30, 41, 59, 0.8);
+
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
+}
+
+/* ==========  BTN ( Components) ========== */
+
+/* -------------------------------BASE----------------------------------- */
+
+.navigation {
+  position: fixed;
+  top: 3rem;
+  left: 3rem;
+  width: 14rem;
+  height: 8rem;
+  background: var(--bgv-100);
+  box-shadow: 0 2.5rem 3.5rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  z-index: 100;
+  transition: height 0.5s, width 0.5s;
+  transition-delay: 0s, 0.75s;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.navigation.active {
+  width: 37rem;
+  height: 32rem;
+  transition: width 0.5s, height 0.5s;
+  transition-delay: 0s, 0.75s;
+}
+.navigation .userBx {
+  position: relative;
+  width: 7rem;
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.5s;
+  transition-delay: 0.5s;
+}
+
+.navigation.active .userBx {
+  width: calc(100% - 7rem);
+  transition-delay: 0s;
+}
+
+.navigation .userBx .username {
+  white-space: nowrap;
+  position: absolute;
+  right: 5%;
+  padding: 0.5rem;
+}
+
+.navigation .userBx .username {
+  color: var(--primary-100);
+  font-size: 2rem;
+}
+
+.navigation .userBx .imgBx {
+  position: relative;
+  min-width: 7rem;
+  height: 8rem;
+  overflow: hidden;
+  /* border: 1rem solid ; */
+}
+
+.navigation .userBx .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+  filter: grayscale(60%);
+}
+
+.navigation .menuToggle {
+  position: relative;
+  width: 7rem;
+  height: 8rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation .menuToggle::before {
+  content: '';
+  position: absolute;
+  width: 3rem;
+  height: 2px;
+  background: var(--primary-color);
+  transform: translateY(-10px);
+  box-shadow: 0 10px var(--primary-color);
+  transition: 0.5s;
+}
+
+.navigation .menuToggle::after {
+  content: '';
+  position: absolute;
+  width: 3rem;
+  height: 2px;
+  background: var(--primary-color);
+  transform: translateY(10px);
+  transition: 0.5s;
+}
+
+.navigation.active .menuToggle::before {
+  transform: translateY(0px) rotate(45deg);
+  box-shadow: 0 0px var(--primary-color);
+}
+.navigation.active .menuToggle::after {
+  transform: translateY(0px) rotate(-45deg);
+}
+
+.menu {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 8rem);
+  margin-top: 8rem;
+  padding: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.menu li {
+  position: relative;
+  list-style: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.menu li a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  font-size: 2rem;
+  gap: 1rem;
+  color: var(--primary-color);
+  transition: 0.3s;
+  text-transform: uppercase;
+}
+
+.menu li a:hover {
+  /* font-size: 2.5rem; */
+  color: var(--primary-100);
+  transform: translateX(1rem);
+}
+
+/* ====== BeatMaker Style ===== */
+
+.kick-pad, .snare-pad, .hihat-pad{
+  width: 5rem;
+  height: 5rem;
+  margin: 1rem 0.5rem;
+  cursor: pointer;
+}
+.sequencer{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  padding-top: 20rem;
+}
+.kick-pad{
+  background-color: rgb(247, 131, 105);
+}
+.snare-pad{
+  background-color: rgb(135, 253, 176);
+}
+.hihat-pad{
+  background-color: rgb(121, 113, 255);
+}
+
+.kick-pad.active{
+  background-color: rgb(249, 90, 55);
+}
+
+.snare-pad.active{
+ background-color: rgb(34, 248, 109);
+}
+.hihat-pad.active{
+  background-color: rgb(85, 76, 255);
+}
+.kick-track, .snare-track, .hihat-track{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+  margin: 5rem;
+}
+
+.kick, .snare, .hihat{
+  display: flex;
+}
+
+.controls{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  margin: 0rem 2rem;
+}
+
+.controls button{
+  padding: 1rem;
+  border: none;
+  background: rgb(88, 88, 88);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  color: white;
+  border-radius: .5rem;
+}
+
+.pad{
+  position: relative;
+   transition: all 0.5s ease;
+}
+.led {
+  width: 10px;
+  height: 10px;
+  background-color: rgb(187, 83, 83);
+  border-radius: 50%;
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.5;
+  transition: background-color 0.1s, opacity 0.1s;
+}
+.pad.active .led {
+  background-color: rgb(9, 255, 0);
+  opacity: 1;
+}
+.play{
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  background: rgb(88,88,88);
+  color: white;
+  border: none;
+  cursor: pointer;
+margin-top: 3rem;
+border-radius: .5rem;
+}
+select{
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: .5rem;
+}
+.mute.active{
+  background: rgb(171, 171, 171); 
+}
+.tempo{
+  margin: 3rem;
+  width: 30%;
+}
+.tempo-slider{
+  padding: 0.2rem;
+  -webkit-appearance: none;
+  margin: 1rem 0rem;
+  width: 100%;
+  position: relative;
+  background: rgb(88,88,88);
+  cursor: pointer;
+  border-radius: 1rem;
+}
+.tempo p{
+  font-size:1.5rem ;
+  margin: 2rem;
+  text-align: center;
+}
+@keyframes playTrack {
+  from{
+    transform: scale(1);
+  }
+  to{
+    transform: scale(1.2);
+  }
+}
+/* ====== BeatMaker Style ===== */
