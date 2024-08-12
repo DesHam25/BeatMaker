@@ -21,8 +21,11 @@ class DrumKit {
     this.bpm = 150;
     this.isPlaying = null;
     this.selects = document.querySelectorAll('select');
-    this.muteBtns = document.querySelectorAll('.mute');
+    // this.muteBtns = document.querySelectorAll('.mute');
     this.tempoSlider = document.querySelector('.tempo-slider');
+    this.volumeControls =
+      document.querySelectorAll('.volume-control');
+    this.muteCheckboxes = document.querySelectorAll('.mute-checkbox');
     // this is going to track our actual track here
   }
   activePad() {
@@ -98,33 +101,42 @@ class DrumKit {
         break;
     }
   }
-  mute(e) {
+  volumeControl(e) {
+    const volumeIndex = e.target.getAttribute('data-track');
+    const volumeValue = e.target.value;
+    const isMuted = document.querySelector(
+      `.mute-checkbox[data-track="${volumeIndex}"]`
+    ).checked;
+
+    switch (volumeIndex) {
+      case '0':
+        this.kickAudio.volume = isMuted ? 0 : volumeValue;
+        break;
+      case '1':
+        this.snareAudio.volume = isMuted ? 0 : volumeValue;
+        break;
+      case '2':
+        this.hihatAudio.volume = isMuted ? 0 : volumeValue;
+        break;
+    }
+  }
+  toggleMute(e) {
     const muteIndex = e.target.getAttribute('data-track');
-    e.target.classList.toggle('active');
-    if (e.target.classList.contains('active')) {
-      switch (muteIndex) {
-        case '0':
-          this.kickAudio.volume = 0;
-          break;
-        case '1':
-          this.snareAudio.volume = 0;
-          break;
-        case '2':
-          this.hihatAudio.volume = 0;
-          break;
-      }
-    } else {
-      switch (muteIndex) {
-        case '0':
-          this.kickAudio.volume = 1;
-          break;
-        case '1':
-          this.snareAudio.volume = 1;
-          break;
-        case '2':
-          this.hihatAudio.volume = 1;
-          break;
-      }
+    const isMuted = e.target.checked;
+    const volumeControl = document.querySelector(
+      `.volume-control[data-track="${muteIndex}"]`
+    );
+
+    switch (muteIndex) {
+      case '0':
+        this.kickAudio.volume = isMuted ? 0 : volumeControl.value;
+        break;
+      case '1':
+        this.snareAudio.volume = isMuted ? 0 : volumeControl.value;
+        break;
+      case '2':
+        this.hihatAudio.volume = isMuted ? 0 : volumeControl.value;
+        break;
     }
   }
   changeTempo(e) {
@@ -142,7 +154,7 @@ class DrumKit {
     }
   }
 }
-
+// Initialize DrumKit
 const drumKit = new DrumKit();
 
 // Event Listeners
@@ -165,9 +177,15 @@ drumKit.selects.forEach((select) => {
   });
 });
 
-drumKit.muteBtns.forEach((btn) => {
-  btn.addEventListener('click', function (e) {
-    drumKit.mute(e);
+drumKit.volumeControls.forEach((control) => {
+  control.addEventListener('input', function (e) {
+    drumKit.volumeControl(e);
+  });
+});
+
+drumKit.muteCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener('change', function (e) {
+    drumKit.toggleMute(e);
   });
 });
 drumKit.tempoSlider.addEventListener('input', function (e) {

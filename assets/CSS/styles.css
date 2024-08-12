@@ -341,9 +341,18 @@ select{
   font-size: 1.2rem;
   border-radius: .5rem;
 }
-.mute.active{
-  background: rgb(171, 171, 171); 
+.volume-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
+
+.volume-control {
+  width: 100px;
+}
+/* .mute.active{
+  background: rgb(171, 171, 171); 
+} */
 .tempo{
   margin: 3rem;
   width: 30%;

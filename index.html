@@ -45,13 +45,13 @@
       <div class="kick-track">
         <div class="controls">
           <div class="controls--header">Kick</div>
-          <button
-            type="button"
-            data-track="0"
-            class="mute kick-volume"
-          >
-            <i class="fas fa-volume-mute"></i>
-          </button>
+          <div class="volume-container">
+  <input type="range" data-track="0" class="volume-control" min="0" max="1" step="0.01" value="1">
+  <label>
+    <input type="checkbox" data-track="0" class="mute-checkbox"> <i class="fas fa-volume-mute"></i>
+  </label>
+</div>
+      
           <select name="kick-select" id="kick-select">
             <option value="./assets/sounds/kick-classic.wav">
               Classic Kick
@@ -101,13 +101,13 @@
       <div class="snare-track">
         <div class="controls">
           <div class="controls--header">Snare</div>
-          <button
-            type="button"
-            data-track="1"
-            class="mute snare-volume"
-          >
-            <i class="fas fa-volume-mute"></i>
-          </button>
+          <div class="volume-container">
+  <input type="range" data-track="1" class="volume-control" min="0" max="1" step="0.01" value="1">
+  <label>
+    <input type="checkbox" data-track="1" class="mute-checkbox"> <i class="fas fa-volume-mute"></i>
+  </label>
+</div>
+       
           <select name="snare-select" id="snare-select">
             <option value="./assets/sounds/snare-acoustic01.wav">
               Classic Snare
@@ -154,13 +154,13 @@
       <div class="hihat-track">
         <div class="controls">
           <div class="controls--header">hihat</div>
-          <button
-            type="button"
-            data-track="2"
-            class="mute hihat-volume"
-          >
-            <i class="fas fa-volume-mute"></i>
-          </button>
+          <div class="volume-container">
+  <input type="range" data-track="2" class="volume-control" min="0" max="1" step="0.01" value="1">
+  <label>
+    <input type="checkbox" data-track="2" class="mute-checkbox"> <i class="fas fa-volume-mute"></i>
+  </label>
+</div>
+ 
           <select name="hihat-select" id="hihat-select">
             <option value="./assets/sounds/hihat-acoustic01.wav">
               Hihat Acoustic
