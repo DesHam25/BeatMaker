@@ -182,7 +182,9 @@ drumKit.volumeControls.forEach((control) => {
     drumKit.volumeControl(e);
   });
 });
-
+// Volume Control: Each track has a volume slider. Adjusting the slider will change the track's volume.
+// Mute Checkbox: The mute checkbox toggles the volume of the track between 0(muted) and the slider value(unmuted).
+// Combined Functionality: If the checkbox is checked (muted), the volume is set to 0, regardless of the slider position. When unchecked, the volume returns to the slider's value.
 drumKit.muteCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener('change', function (e) {
     drumKit.toggleMute(e);
